@@ -1,3 +1,4 @@
+CREATE DATABASE [recobrosDB]
 use [recobrosDB]
 
 CREATE TABLE Parametros (
@@ -179,16 +180,19 @@ REFERENCES Servicios(id_servicio)
 alter table Consolidado add CONSTRAINT FKH_IdAliado FOREIGN KEY (id_aliado) 
 REFERENCES Aliados(id_aliado)
 
-/*
-drop table HistorialConsolidado
-drop table LogErrores
-drop table Consolidado
-drop table ControlArchivo
-drop table CentroCostos
-drop table Aplicaciones
-drop table Servicios
-drop table Aliados
-drop table Parametros
-*/
+
+GO
+
+INSERT INTO [dbo].[Parametros]
+           ([ruta_archivos_procesar]
+           ,[num_meses_eliminacion_historico]
+           ,[num_columnas_archivo]
+           ,[bytes_max_archivo])
+     VALUES
+           ('\\\\bjavaplivitd\\TmpFuentes\\Recobros\',
+           6,
+           7,
+           30000000)
+GO
 
 
