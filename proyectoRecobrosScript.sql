@@ -20,7 +20,7 @@ CREATE TABLE CierreMes (
 id_cierre_mes int primary key NOT NULL identity(1,1),
 mes int NOT NULL,
 anio int NOT NULL,
-estado varchar(50) check (estado IN ('Pendiente','Cerrado')),
+estado varchar(50) check (estado IN ('Pendiente','Procesando','Cerrado')),
 usuario varchar(100) NOT NULL,
 fecha_servidor datetime DEFAULT GETDATE(),
 )
@@ -52,14 +52,11 @@ nombre_aplicacion varchar(80) NOT NULL,
 estado varchar(50) check (estado IN ('Activo','Inactivo')),
 nombre_segmento varchar(50) NULL,
 id_servicio int NOT NULL,
-id_aliado int NOT NULL
 )
 
 GO
 alter table Aplicaciones add CONSTRAINT FK_IdServicio FOREIGN KEY (id_servicio) 
 REFERENCES Servicios(id_servicio)
-alter table Aplicaciones add CONSTRAINT FK_IdAliados FOREIGN KEY (id_aliado)
-REFERENCES Aliados(id_aliado)
 
 CREATE TABLE CentroCostos (
 id_centro_costo int primary key NOT NULL identity(1,1),
@@ -170,15 +167,15 @@ id_aliado int NOT NULL
 )
 
 GO
-alter table Consolidado add CONSTRAINT FKH_IdConsolidado FOREIGN KEY (id_consolidado)
+alter table HistorialConsolidado add CONSTRAINT FKHC_IdConsolidado FOREIGN KEY (id_consolidado)
 REFERENCES Consolidado(id_consolidado)
-alter table Consolidado add CONSTRAINT FKH_IdControlArchivo FOREIGN KEY (id_control_archivo)
+alter table HistorialConsolidado add CONSTRAINT FKHC_IdControlArchivo FOREIGN KEY (id_control_archivo)
 REFERENCES ControlArchivo(id_control_archivo)
-alter table Consolidado add CONSTRAINT FKH_IdAplicacion FOREIGN KEY (id_aplicacion) 
+alter table HistorialConsolidado add CONSTRAINT FKHC_IdAplicacion FOREIGN KEY (id_aplicacion) 
 REFERENCES Aplicaciones(id_aplicacion)
-alter table Consolidado add CONSTRAINT FKH_IdServicio FOREIGN KEY (id_servicio) 
+alter table HistorialConsolidado add CONSTRAINT FKHC_IdServicio FOREIGN KEY (id_servicio) 
 REFERENCES Servicios(id_servicio)
-alter table Consolidado add CONSTRAINT FKH_IdAliado FOREIGN KEY (id_aliado) 
+alter table HistorialConsolidado add CONSTRAINT FKHC_IdAliado FOREIGN KEY (id_aliado) 
 REFERENCES Aliados(id_aliado)
 
 
