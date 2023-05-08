@@ -14,7 +14,8 @@ CREATE TABLE Parametros (
 id_parametro int primary key NOT NULL identity(1,1),
 num_meses_eliminacion_historico int NOT NULL,
 num_columnas_archivo int NOT NULL,
-bytes_max_archivo int NOT NULL
+bytes_max_archivo int NOT NULL,
+num_columnas_CECO int NOT NULL,
 )
 
 CREATE TABLE Homologaciones (
@@ -196,11 +197,13 @@ GO
 INSERT INTO [dbo].[Parametros]
            ([num_meses_eliminacion_historico]
            ,[num_columnas_archivo]
-           ,[bytes_max_archivo])
+           ,[bytes_max_archivo]
+		   ,[num_columnas_CECO])
      VALUES
            (6,
            7,
-           30000000)
+           30000000,
+		   3)
 GO
 
 
