@@ -12,7 +12,6 @@ CREATE TABLE Usuarios (
 
 CREATE TABLE Parametros (
 id_parametro int primary key NOT NULL identity(1,1),
-ruta_archivos_procesar varchar(250) NOT NULL,
 num_meses_eliminacion_historico int NOT NULL,
 num_columnas_archivo int NOT NULL,
 bytes_max_archivo int NOT NULL
@@ -195,13 +194,11 @@ REFERENCES Aliados(id_aliado)
 GO
 
 INSERT INTO [dbo].[Parametros]
-           ([ruta_archivos_procesar]
-           ,[num_meses_eliminacion_historico]
+           ([num_meses_eliminacion_historico]
            ,[num_columnas_archivo]
            ,[bytes_max_archivo])
      VALUES
-           ('\\\\bjavaplivitd\\TmpFuentes\\Recobros\',
-           6,
+           (6,
            7,
            30000000)
 GO
